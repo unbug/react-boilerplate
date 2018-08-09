@@ -1,6 +1,8 @@
-var gulp = require('gulp-help')(require('gulp'));
-var $ = require('gulp-load-plugins')();
-var runSequence = require('run-sequence');
+'use strict';
+
+const gulp = require('gulp-help')(require('gulp'));
+const $ = require('./util');
+const runSequence = require('run-sequence');
 
 function watch(files, cb) {
   return gulp.watch(files, function (event) {

@@ -1,6 +1,8 @@
-var gulp = require('gulp-help')(require('gulp'));
-var del = require('del');
-var runSequence = require('run-sequence');
+'use strict';
+
+const gulp = require('gulp-help')(require('gulp'));
+const del = require('del');
+const runSequence = require('run-sequence');
 
 gulp.task('clean:dist', 'Cleans dist files', function (cb) {
   return del(['./dist/**'], {force: true});

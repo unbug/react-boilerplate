@@ -1,16 +1,18 @@
-var gulp = require('gulp-help')(require('gulp'));
-var $ = require('gulp-load-plugins')();
-var webpack = require('webpack');
-var webpackConfig = require('../webpack.config.js');
-var runSequence = require('run-sequence');
-var env = process.env.NODE_ENV;
+'use strict';
+
+const gulp = require('gulp-help')(require('gulp'));
+const $ = require('./util');
+const webpack = require('webpack');
+const webpackConfig = require('../webpack.config.js');
+const runSequence = require('run-sequence');
+const env = process.env.NODE_ENV;
 
 gulp.task('build:app-js', 'Builds the app scripts', () => {
   return new Promise(resolve => webpack(webpackConfig[env === 'production' ? 'prod' : 'dev'], function (err, stats) {
     if (err) throw new $.util.PluginError('webpack', err);
     let errorStats = stats.toString('errors-only');
     if (errorStats != '') $.util.log('[webpack]', errorStats);
-    resolve()
+    resolve();
   }));
 });
 
