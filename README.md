@@ -1,9 +1,9 @@
 # react-boilerplate
 
-A react base boilerplate project.
+react boilerplate for react project.
 
 ## get started
-```javascript
+```shell
 
 // install denpendence
 npm install
