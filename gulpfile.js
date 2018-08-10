@@ -11,7 +11,7 @@ gulp.task('default', function (cb) {
   $.util.log(
     $.util.colors.green('Building and watching for changes ...')
   );
-  runSequence('clean', 'lint', 'build:app-css', 'watch', 'server', function () {
+  runSequence('clean', 'lint', 'build:app-css', 'build:lib-js', 'watch', 'server', function () {
     cb();
     $.util.log(
       $.util.colors.green('Ready! Run "gulp help" for more build command usages.'), '\n'

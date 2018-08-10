@@ -50,12 +50,12 @@ module.exports = {
   'env': {
     'es6': true,
     'node': true,
-    'browser': true,
-    'jasmine': true,
-    'jquery': true
+    'browser': true
   },
   'globals': {
-    'Promise': false
+    'React': true,
+    'ReactDOM': true,
+    'Promise': true
   },
   "parser": "babel-eslint",
   'parserOptions': {

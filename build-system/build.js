@@ -35,6 +35,12 @@ gulp.task('build:app-css', 'Builds the app style', cb => {
     });
 });
 
+gulp.task('build:lib-js', function () {
+  return gulp.src(require('../src/lib.config'))
+    .pipe($.concat('lib.js'))
+    .pipe(gulp.dest('./app/js/'));
+});
+
 gulp.task('build', 'Builds the app', cb => {
-  runSequence(['build:app-js', 'build:app-css'], cb);
+  runSequence(['build:app-js', 'build:app-css', 'build:lib-js'], cb);
 });

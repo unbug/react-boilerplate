@@ -1,7 +1,5 @@
 'use strict'
 
-import React from 'react';
-import ReactDOM from 'react-dom';
 import MainContainer from './containers/MainContainer';
 
 class App extends React.Component {
