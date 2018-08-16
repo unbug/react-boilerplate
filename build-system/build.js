@@ -8,7 +8,7 @@ const runSequence = require('run-sequence');
 const env = process.env.NODE_ENV;
 
 gulp.task('build:app-js', 'Builds the app scripts', () => {
-  return new Promise(resolve => webpack(webpackConfig[env === 'production' ? 'prod' : 'dev'], function (err, stats) {
+  return new Promise(resolve => webpack(webpackConfig[env === 'production' ? 'prod' : 'dev'], (err, stats) => {
     if (err) throw new $.util.PluginError('webpack', err);
     let errorStats = stats.toString('errors-only');
     if (errorStats != '') $.util.log('[webpack]', errorStats);
@@ -17,10 +17,10 @@ gulp.task('build:app-js', 'Builds the app scripts', () => {
 });
 
 gulp.task('build:app-css', 'Builds the app style', cb => {
-  gulp.src(['./style/**/*.scss'], {buffer: true})
+  gulp.src(['./styles/**/*.scss'], {buffer: true})
     .pipe($.sass({
       outputStyle: 'expanded',
-      sourceMap: 'styles.css.map',
+      sourceMap: 'app.css.map',
       sourceMapContents: true,
       sourceMapEmbed: false,
       includePaths: ['./node_modules/']
@@ -35,12 +35,23 @@ gulp.task('build:app-css', 'Builds the app style', cb => {
     });
 });
 
-gulp.task('build:lib-js', function () {
-  return gulp.src(require('../src/lib.config'))
+gulp.task('build:lib-js', () => {
+  return gulp.src(require('../lib.config').js)
     .pipe($.concat('lib.js'))
     .pipe(gulp.dest('./app/js/'));
 });
 
+gulp.task('build:lib-css', () => {
+  return gulp.src(require('../lib.config').css)
+    .pipe($.concat('lib.css'))
+    .pipe(gulp.dest('./app/css/'));
+});
+
+gulp.task('build:images', () => {
+  return gulp.src('./assets/images/**/*.*')
+    .pipe(gulp.dest('./app/images/'));
+});
+
 gulp.task('build', 'Builds the app', cb => {
-  runSequence(['build:app-js', 'build:app-css', 'build:lib-js'], cb);
+  runSequence(['build:images', 'build:app-js', 'build:lib-css', 'build:app-css', 'build:lib-js'], cb);
 });

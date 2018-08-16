@@ -10,6 +10,10 @@ const common = {
     path: path.resolve(__dirname, 'app/js'),
     publicPath: '/app/js'
   },
+  externals: {
+    'react': 'React',
+    'react-dom': 'ReactDOM'
+  },
   module: {
     rules: [
       {

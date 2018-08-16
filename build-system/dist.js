@@ -9,7 +9,7 @@ const cachebust = $.cachebust();
 const distPath = './dist';
 
 gulp.task('dist:images', 'Compress images to dist', () => {
-  return gulp.src(['./app/images/**/*.*g'])
+  return gulp.src(['./app/images/**/*'])
     .pipe($.imagemin({
       use: [pngquant()]
     }))
@@ -36,7 +36,7 @@ gulp.task('dist:js', 'Compress js to dist', () => {
     .pipe($.size({title: 'dist:js'}));
 });
 
-gulp.task('dist:html', 'Compress html to dist', function () {
+gulp.task('dist:html', 'Compress html to dist', () => {
   return gulp.src(['./app/*.html'])
     .pipe(cachebust.references())
     .pipe($.htmlmin({collapseWhitespace: true}))

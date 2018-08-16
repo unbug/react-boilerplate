@@ -13,6 +13,6 @@ function watch(files, cb) {
 
 gulp.task('watch', 'Watches for changes in files',
   () => {
-    watch(['src/**/*.js'], () => runSequence('lint', 'build:lib-js'));
+    watch(['lib.config.js'], () => runSequence('lint', 'build:lib-js', 'build:lib-css'));
     watch(['style/**/*.*'], () => runSequence('lint', 'build:app-css'));
   });
