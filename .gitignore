@@ -27,4 +27,5 @@ node_modules
 docs/html
 app/css
 app/js
+app/images
 dist
