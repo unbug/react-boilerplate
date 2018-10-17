@@ -11,8 +11,8 @@ function watch(files, cb) {
   });
 }
 
-gulp.task('watch', 'Watches for changes in files',
+gulp.task('watch', 'Watches for changes in files.',
   () => {
-    watch(['lib.config.js'], () => runSequence('lint', 'build:lib-js', 'build:lib-css'));
-    watch(['style/**/*.*'], () => runSequence('lint', 'build:app-css'));
+    watch(['lib.config.js'], () => runSequence('lint', 'build:extra', 'build:lib-js', 'build:lib-css'));
+    watch(['styles/**/*.*'], () => runSequence('lint', 'build:app-css'));
   });
