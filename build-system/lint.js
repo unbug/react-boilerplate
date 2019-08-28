@@ -1,10 +1,11 @@
 'use strict';
 
-const gulp = require('gulp-help')(require('gulp'));
+const gulp = require('gulp');
 const $ = require('./util');
 
-gulp.task('lint', 'Lint JS files.', () => {
-  return gulp.src(['gulpfile.js', 'build-system/**/*.js', 'src/**/*.js*', '!src/vendors/**/**.*'])
+// Lint JS files.
+gulp.task('lint', () => {
+  return gulp.src(['gulpfile.js', 'build-system/**/*.js', 'src/**/*.js*', '!src/vendors/**/**.*', '!src/sw.js'])
     .pipe($.eslint())
     .pipe($.eslint.format());
 });

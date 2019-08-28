@@ -1,18 +1,18 @@
 'use strict';
 
-const gulp = require('gulp-help')(require('gulp'));
+const gulp = require('gulp');
 const $ = require('./util');
-const runSequence = require('run-sequence');
 
 function watch(files, cb) {
-  return gulp.watch(files, function (event) {
+  return gulp.watch(files, event => {
     $.util.log($.util.colors.bold('File ' + event.path + ' was ' + event.type + ', running tasks...'));
     cb();
   });
 }
 
-gulp.task('watch', 'Watches for changes in files.',
-  () => {
-    watch(['lib.config.js'], () => runSequence('lint', 'build:extra', 'build:lib-js', 'build:lib-css'));
-    watch(['styles/**/*.*'], () => runSequence('lint', 'build:app-css'));
-  });
+// Watches for changes in files.
+gulp.task('watch', cb => {
+  watch(['lib.config.js'], () => gulp.series('lint', 'build:extra', 'build:lib-js', 'build:lib-css'));
+  watch(['styles/**/*.*'], () => gulp.series('lint', 'build:app-css'));
+  cb();
+});
